@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>本詳細</title>
+</head>
+
+<body>
+<h1>本詳細</h1>
+
+<div th:object="${book}">
+	<table border=1>
+		<tr>
+			<th>ID</th>
+			<th>タイトル</th>
+			<th>著者</th>
+			<th>SN</th>
+		</tr>
+		<tr>
+			<td th:text="*{id}"></td>
+			<td th:text="*{title}"></td>
+			<td th:text="*{author}"></td>
+			<td th:text="*{sn}"></td>
+		</tr>
+	
+	</table>
+
+</div>
+
+</body>
+
+</html>

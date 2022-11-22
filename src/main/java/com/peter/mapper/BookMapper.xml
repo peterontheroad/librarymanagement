@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.peter.mapper.BookMapper">
+	<resultMap type="com.peter.entity.Book" id="book">
+		<id column="id" property="id" />
+		<result column="title" property="title" />
+		<result column="author" property="author" />
+		<result column="sn" property="sn" />
+	</resultMap>
+	
+	<select id="selectAll" resultType="com.peter.entity.Book">
+		select * from librarydb
+	</select>
+	
+	<select id="selectOne" resultMap="book">
+		select * from librarydb where id = #{id}
+	</select>
+	
+	<insert id="insertOne">
+		insert into librarydb(id,title,author,sn) values(#{id},#{title},#{author},#{sn})
+	</insert>
+	
+	<delete id="deleteOne">
+		delete from librarydb where id = #{id}
+	</delete>
+	
+	<update id="updateOne">
+		update librarydb set title=#{title}, author=#{author}, sn=#{sn} where id=#{id}
+	</update>
+	
+</mapper>

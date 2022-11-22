@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>図書館管理システムへようこそ</title>
+</head>
+
+<body>
+	<h1>図書館管理システム</h1>
+	
+	<div th:if="!${books.size()}">
+		<h2>登録されてる本はありません</h2>
+	</div>
+	
+	
+		<a th:href="@{/list}"><button>本一覧</button></a>
+		
+	
+	
+	<a th:href="@{/books/register}"><button>新しい本を登録</button></a>
+	<br/><br/>
+	
+	<table th:if="${books.size()}" border=1>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>タイトル</th>
+				<th>著者</th>
+				<th>SN</th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		
+		</thead>
+		
+		<tbody>
+			<tr th:each="book:${books}" th:object="${book}">
+				<td th:text="*{id}"></td>
+				<td th:text="*{title}"></td>
+				<td th:text="*{author}"></td>
+				<td th:text="*{sn}"></td>
+				<td><a th:href="@{/books/details/id={id}(id=*{id})}">詳細</a></td>
+				<td><a th:href="@{/books/update/id={id}(id=*{id})}">変更</a></td>
+				<td><form th:method="post" th:action="@{/books/delete/id={id}(id=*{id})}"><button>削除</button></form></td>
+				</tr>
+		</tbody>
+	
+	</table>
+	
+</body>
+
+</html>
